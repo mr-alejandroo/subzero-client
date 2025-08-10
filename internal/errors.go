@@ -1,4 +1,4 @@
-package subzero
+package internal
 
 import (
 	"errors"
@@ -92,17 +92,17 @@ func (e *CacheError) Unwrap() error {
 	return e.Cause
 }
 
-// IsRetryable returns whether this error should trigger a retry
+// Returns whether this error should trigger a retry
 func (e *CacheError) IsRetryable() bool {
 	return e.Retryable
 }
 
-// IsTemporary returns whether this is a temporary error
+// Returns whether this is a temporary error
 func (e *CacheError) IsTemporary() bool {
 	return e.Retryable
 }
 
-// NewCacheError creates a new CacheError
+// Creates a new CacheError
 func NewCacheError(code ErrorCode, message, operation string) *CacheError {
 	return &CacheError{
 		Code:      code,
@@ -112,7 +112,7 @@ func NewCacheError(code ErrorCode, message, operation string) *CacheError {
 	}
 }
 
-// NewCacheErrorWithKey creates a new CacheError with a key
+// Creates a new CacheError with a key
 func NewCacheErrorWithKey(code ErrorCode, message, operation, key string) *CacheError {
 	return &CacheError{
 		Code:      code,
@@ -123,7 +123,7 @@ func NewCacheErrorWithKey(code ErrorCode, message, operation, key string) *Cache
 	}
 }
 
-// NewCacheErrorWithCause creates a new CacheError with an underlying cause
+// Creates a new CacheError with an underlying cause
 func NewCacheErrorWithCause(code ErrorCode, message, operation string, cause error) *CacheError {
 	return &CacheError{
 		Code:      code,
@@ -134,7 +134,7 @@ func NewCacheErrorWithCause(code ErrorCode, message, operation string, cause err
 	}
 }
 
-// isRetryableErrorCode determines if an error code should trigger retries
+// Determines if an error code should trigger retries
 func isRetryableErrorCode(code ErrorCode) bool {
 	switch code {
 	case ErrorCodeConnectionFailed, ErrorCodeTimeout, ErrorCodeServerError, ErrorCodeResourceExhausted:
@@ -147,7 +147,7 @@ func isRetryableErrorCode(code ErrorCode) bool {
 	}
 }
 
-// WrapGRPCError converts a gRPC error to a CacheError
+// Converts a gRPC error to a CacheError
 func WrapGRPCError(err error, operation string) error {
 	if err == nil {
 		return nil
@@ -190,7 +190,7 @@ func WrapGRPCError(err error, operation string) error {
 	return NewCacheErrorWithCause(ErrorCodeOperationFailed, errStr, operation, err)
 }
 
-// WrapTCPError converts a TCP error to a CacheError
+// Converts a TCP error to a CacheError
 func WrapTCPError(err error, operation string) error {
 	if err == nil {
 		return nil
@@ -217,13 +217,13 @@ func WrapTCPError(err error, operation string) error {
 	return NewCacheErrorWithCause(ErrorCodeOperationFailed, errStr, operation, err)
 }
 
-// IsCacheError checks if an error is a CacheError
+// Checks if an error is a CacheError
 func IsCacheError(err error) bool {
 	_, ok := err.(*CacheError)
 	return ok
 }
 
-// GetCacheError extracts a CacheError from an error chain
+// Extracts a CacheError from an error chain
 func GetCacheError(err error) *CacheError {
 	var cacheErr *CacheError
 	if errors.As(err, &cacheErr) {
@@ -232,7 +232,7 @@ func GetCacheError(err error) *CacheError {
 	return nil
 }
 
-// IsRetryableError checks if an error should trigger a retry
+// Checks if an error should trigger a retry
 func IsRetryableError(err error) bool {
 	if cacheErr := GetCacheError(err); cacheErr != nil {
 		return cacheErr.IsRetryable()
@@ -240,7 +240,7 @@ func IsRetryableError(err error) bool {
 	return isRetryableError(err) // fallback to existing function
 }
 
-// IsConnectionError checks if an error is related to connection issues
+// Checks if an error is related to connection issues
 func IsConnectionError(err error) bool {
 	if cacheErr := GetCacheError(err); cacheErr != nil {
 		return cacheErr.Code == ErrorCodeConnectionFailed
@@ -256,7 +256,7 @@ func IsConnectionError(err error) bool {
 		strings.Contains(errStr, "EOF")
 }
 
-// IsTimeoutError checks if an error is related to timeouts
+// Checks if an error is related to timeouts
 func IsTimeoutError(err error) bool {
 	if cacheErr := GetCacheError(err); cacheErr != nil {
 		return cacheErr.Code == ErrorCodeTimeout
@@ -271,7 +271,7 @@ func IsTimeoutError(err error) bool {
 		strings.Contains(errStr, "deadline exceeded")
 }
 
-// IsKeyNotFoundError checks if an error indicates a key was not found
+// Checks if an error indicates a key was not found
 func IsKeyNotFoundError(err error) bool {
 	if cacheErr := GetCacheError(err); cacheErr != nil {
 		return cacheErr.Code == ErrorCodeKeyNotFound
@@ -284,19 +284,19 @@ func IsKeyNotFoundError(err error) bool {
 	return false
 }
 
-// ErrorReporter provides structured error reporting capabilities
+// Provides structured error reporting capabilities
 type ErrorReporter struct {
 	OnError func(err *CacheError)
 }
 
-// NewErrorReporter creates a new error reporter
+// Creates a new error reporter
 func NewErrorReporter(onError func(err *CacheError)) *ErrorReporter {
 	return &ErrorReporter{
 		OnError: onError,
 	}
 }
 
-// ReportError reports an error if it's a CacheError
+// Reports an error if it's a CacheError
 func (r *ErrorReporter) ReportError(err error) {
 	if r.OnError == nil {
 		return

@@ -7,10 +7,11 @@
 package proto
 
 import (
-	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
-	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
 	sync "sync"
+
+	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
+	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 )
 
 const (
@@ -967,43 +968,43 @@ func file_proto_cache_proto_rawDescGZIP() []byte {
 
 var file_proto_cache_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
 var file_proto_cache_proto_goTypes = []interface{}{
-	(*GetRequest)(nil),       // 0: nova_cache.GetRequest
-	(*GetResponse)(nil),      // 1: nova_cache.GetResponse
-	(*SetRequest)(nil),       // 2: nova_cache.SetRequest
-	(*SetResponse)(nil),      // 3: nova_cache.SetResponse
-	(*DeleteRequest)(nil),    // 4: nova_cache.DeleteRequest
-	(*DeleteResponse)(nil),   // 5: nova_cache.DeleteResponse
-	(*BatchGetRequest)(nil),  // 6: nova_cache.BatchGetRequest
-	(*BatchGetResponse)(nil), // 7: nova_cache.BatchGetResponse
-	(*BatchSetRequest)(nil),  // 8: nova_cache.BatchSetRequest
-	(*BatchSetResponse)(nil), // 9: nova_cache.BatchSetResponse
-	(*HealthRequest)(nil),    // 10: nova_cache.HealthRequest
-	(*HealthResponse)(nil),   // 11: nova_cache.HealthResponse
-	(*MetricsRequest)(nil),   // 12: nova_cache.MetricsRequest
-	(*MetricsResponse)(nil),  // 13: nova_cache.MetricsResponse
-	(*EntryMetadata)(nil),    // 14: nova_cache.EntryMetadata
-	nil,                      // 15: nova_cache.BatchGetResponse.ResultsEntry
+	(*GetRequest)(nil),       // 0: subzero_cache.GetRequest
+	(*GetResponse)(nil),      // 1: subzero_cache.GetResponse
+	(*SetRequest)(nil),       // 2: subzero_cache.SetRequest
+	(*SetResponse)(nil),      // 3: subzero_cache.SetResponse
+	(*DeleteRequest)(nil),    // 4: subzero_cache.DeleteRequest
+	(*DeleteResponse)(nil),   // 5: subzero_cache.DeleteResponse
+	(*BatchGetRequest)(nil),  // 6: subzero_cache.BatchGetRequest
+	(*BatchGetResponse)(nil), // 7: subzero_cache.BatchGetResponse
+	(*BatchSetRequest)(nil),  // 8: subzero_cache.BatchSetRequest
+	(*BatchSetResponse)(nil), // 9: subzero_cache.BatchSetResponse
+	(*HealthRequest)(nil),    // 10: subzero_cache.HealthRequest
+	(*HealthResponse)(nil),   // 11: subzero_cache.HealthResponse
+	(*MetricsRequest)(nil),   // 12: subzero_cache.MetricsRequest
+	(*MetricsResponse)(nil),  // 13: subzero_cache.MetricsResponse
+	(*EntryMetadata)(nil),    // 14: subzero_cache.EntryMetadata
+	nil,                      // 15: subzero_cache.BatchGetResponse.ResultsEntry
 }
 var file_proto_cache_proto_depIdxs = []int32{
-	14, // 0: nova_cache.GetResponse.metadata:type_name -> nova_cache.EntryMetadata
-	15, // 1: nova_cache.BatchGetResponse.results:type_name -> nova_cache.BatchGetResponse.ResultsEntry
-	2,  // 2: nova_cache.BatchSetRequest.requests:type_name -> nova_cache.SetRequest
-	3,  // 3: nova_cache.BatchSetResponse.responses:type_name -> nova_cache.SetResponse
-	1,  // 4: nova_cache.BatchGetResponse.ResultsEntry.value:type_name -> nova_cache.GetResponse
-	0,  // 5: nova_cache.CacheService.Get:input_type -> nova_cache.GetRequest
-	2,  // 6: nova_cache.CacheService.Set:input_type -> nova_cache.SetRequest
-	4,  // 7: nova_cache.CacheService.Delete:input_type -> nova_cache.DeleteRequest
-	6,  // 8: nova_cache.CacheService.BatchGet:input_type -> nova_cache.BatchGetRequest
-	8,  // 9: nova_cache.CacheService.BatchSet:input_type -> nova_cache.BatchSetRequest
-	10, // 10: nova_cache.CacheService.Health:input_type -> nova_cache.HealthRequest
-	12, // 11: nova_cache.CacheService.Metrics:input_type -> nova_cache.MetricsRequest
-	1,  // 12: nova_cache.CacheService.Get:output_type -> nova_cache.GetResponse
-	3,  // 13: nova_cache.CacheService.Set:output_type -> nova_cache.SetResponse
-	5,  // 14: nova_cache.CacheService.Delete:output_type -> nova_cache.DeleteResponse
-	7,  // 15: nova_cache.CacheService.BatchGet:output_type -> nova_cache.BatchGetResponse
-	9,  // 16: nova_cache.CacheService.BatchSet:output_type -> nova_cache.BatchSetResponse
-	11, // 17: nova_cache.CacheService.Health:output_type -> nova_cache.HealthResponse
-	13, // 18: nova_cache.CacheService.Metrics:output_type -> nova_cache.MetricsResponse
+	14, // 0: subzero_cache.GetResponse.metadata:type_name -> subzero_cache.EntryMetadata
+	15, // 1: subzero_cache.BatchGetResponse.results:type_name -> subzero_cache.BatchGetResponse.ResultsEntry
+	2,  // 2: subzero_cache.BatchSetRequest.requests:type_name -> subzero_cache.SetRequest
+	3,  // 3: subzero_cache.BatchSetResponse.responses:type_name -> subzero_cache.SetResponse
+	1,  // 4: subzero_cache.BatchGetResponse.ResultsEntry.value:type_name -> subzero_cache.GetResponse
+	0,  // 5: subzero_cache.CacheService.Get:input_type -> subzero_cache.GetRequest
+	2,  // 6: subzero_cache.CacheService.Set:input_type -> subzero_cache.SetRequest
+	4,  // 7: subzero_cache.CacheService.Delete:input_type -> subzero_cache.DeleteRequest
+	6,  // 8: subzero_cache.CacheService.BatchGet:input_type -> subzero_cache.BatchGetRequest
+	8,  // 9: subzero_cache.CacheService.BatchSet:input_type -> subzero_cache.BatchSetRequest
+	10, // 10: subzero_cache.CacheService.Health:input_type -> subzero_cache.HealthRequest
+	12, // 11: subzero_cache.CacheService.Metrics:input_type -> subzero_cache.MetricsRequest
+	1,  // 12: subzero_cache.CacheService.Get:output_type -> subzero_cache.GetResponse
+	3,  // 13: subzero_cache.CacheService.Set:output_type -> subzero_cache.SetResponse
+	5,  // 14: subzero_cache.CacheService.Delete:output_type -> subzero_cache.DeleteResponse
+	7,  // 15: subzero_cache.CacheService.BatchGet:output_type -> subzero_cache.BatchGetResponse
+	9,  // 16: subzero_cache.CacheService.BatchSet:output_type -> subzero_cache.BatchSetResponse
+	11, // 17: subzero_cache.CacheService.Health:output_type -> subzero_cache.HealthResponse
+	13, // 18: subzero_cache.CacheService.Metrics:output_type -> subzero_cache.MetricsResponse
 	12, // [12:19] is the sub-list for method output_type
 	5,  // [5:12] is the sub-list for method input_type
 	5,  // [5:5] is the sub-list for extension type_name

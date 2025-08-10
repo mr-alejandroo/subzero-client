@@ -1,4 +1,4 @@
-package subzero
+package internal
 
 import (
 	"context"
@@ -13,10 +13,9 @@ import (
 	"google.golang.org/grpc/keepalive"
 	"google.golang.org/grpc/status"
 
-	pb "github.com/nova-cache/subzero-client/proto"
+	pb "github.com/mr.alejandroo/subzero-client/proto"
 )
 
-// ClientConfig holds configuration options for the Nova Cache client
 type ClientConfig struct {
 	// Connection settings
 	Address          string        `json:"address"`
@@ -36,12 +35,11 @@ type ClientConfig struct {
 	EnablePooling bool `json:"enable_pooling"`
 	PoolReuse     bool `json:"pool_reuse"`
 
-	// TLS settings (for production)
+	// TLS settings
 	EnableTLS     bool   `json:"enable_tls"`
 	TLSServerName string `json:"tls_server_name"`
 }
 
-// DefaultConfig returns a configuration optimized for same-server deployment
 func DefaultConfig() *ClientConfig {
 	return &ClientConfig{
 		Address:           "127.0.0.1:8080",
@@ -60,7 +58,6 @@ func DefaultConfig() *ClientConfig {
 	}
 }
 
-// ProductionConfig returns a configuration optimized for production deployment
 func ProductionConfig(address string) *ClientConfig {
 	config := DefaultConfig()
 	config.Address = address
@@ -70,7 +67,7 @@ func ProductionConfig(address string) *ClientConfig {
 	return config
 }
 
-// Client represents a Nova Cache client with connection pooling and retry logic
+// Subzero Client
 type Client struct {
 	config      *ClientConfig
 	clients     []pb.CacheServiceClient
@@ -81,13 +78,11 @@ type Client struct {
 	closed      int32
 }
 
-// contextWrapper wraps context with cancel function for pooling
 type contextWrapper struct {
 	ctx    context.Context
 	cancel context.CancelFunc
 }
 
-// NewClient creates a new Nova Cache client with the given configuration
 func NewClient(config *ClientConfig) (*Client, error) {
 	if config == nil {
 		config = DefaultConfig()
@@ -103,7 +98,7 @@ func NewClient(config *ClientConfig) (*Client, error) {
 		connections: make([]*grpc.ClientConn, config.MaxConnections),
 	}
 
-	// Initialize context pool
+	// Context Pool
 	client.contextPool.New = func() interface{} {
 		ctx, cancel := context.WithTimeout(context.Background(), config.RequestTimeout)
 		return &contextWrapper{ctx: ctx, cancel: cancel}

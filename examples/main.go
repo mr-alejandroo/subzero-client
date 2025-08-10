@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/nova-cache/subzero-client"
+	subzero "github.com/mr.alejandroo/subzero-client/internal"
 )
 
 func main() {

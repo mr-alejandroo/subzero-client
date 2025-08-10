@@ -1,6 +1,6 @@
-module github.com/nova-cache/subzero-client
+module github.com/mr.alejandroo/subzero-client
 
-go 1.21
+go 1.24.4
 
 require (
 	google.golang.org/grpc v1.58.3

@@ -4,15 +4,17 @@ import (
 	"fmt"
 	"testing"
 	"time"
+
+	subzero "github.com/mr.alejandroo/subzero-client/internal"
 )
 
 func TestIntegrationLocalServer(t *testing.T) {
 	// Skip if running in short mode (CI/CD environments)
 	if testing.Short() {
-		t.Skip("Skipping integration test in short mode - requires running Nova Cache server")
+		t.Skip("Skipping integration test in short mode - requires running SubZero server")
 	}
 
-	config := &ClientConfig{
+	config := &subzero.ClientConfig{
 		Address:           "127.0.0.1:8080",
 		MaxConnections:    4,
 		ConnectTimeout:    2 * time.Second,
@@ -28,7 +30,7 @@ func TestIntegrationLocalServer(t *testing.T) {
 		EnableTLS:         false,
 	}
 
-	client, err := NewClient(config)
+	client, err := subzero.NewClient(config)
 	if err != nil {
 		t.Fatalf("Failed to create client: %v", err)
 	}
@@ -58,7 +60,7 @@ func TestIntegrationLocalServer(t *testing.T) {
 	// Test basic Set/Get operations
 	t.Run("BasicSetGet", func(t *testing.T) {
 		testKey := fmt.Sprintf("test:integration:%d", time.Now().UnixNano())
-		testValue := []byte(`{"message":"Hello Nova Cache","timestamp":"` + time.Now().Format(time.RFC3339) + `","test":true}`)
+		testValue := []byte(`{"message":"Hello SubZero","timestamp":"` + time.Now().Format(time.RFC3339) + `","test":true}`)
 
 		// Test SET operation
 		setStartNano := time.Now().UnixNano()
@@ -192,7 +194,6 @@ func TestIntegrationLocalServer(t *testing.T) {
 		client.Delete(testKey)
 	})
 
-	// Test batch operations performance
 	t.Run("BatchOperations", func(t *testing.T) {
 		batchSize := 10
 		items := make(map[string][]byte)
@@ -264,7 +265,6 @@ func TestIntegrationLocalServer(t *testing.T) {
 		}
 	})
 
-	// Test performance under rapid operations
 	t.Run("RapidOperations", func(t *testing.T) {
 		numOps := 100
 		keys := make([]string, numOps)

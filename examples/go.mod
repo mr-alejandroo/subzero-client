@@ -1,10 +1,10 @@
-module github.com/nova-cache/subzero-client/examples
+module github.com/mr.alejandroo/subzero-client/examples
 
-go 1.21
+go 1.24.4
 
-replace github.com/nova-cache/subzero-client => ../
+replace github.com/mr.alejandroo/subzero-client => ../
 
-require github.com/nova-cache/subzero-client v0.0.0-00010101000000-000000000000
+require github.com/mr.alejandroo/subzero-client v0.0.0-00010101000000-000000000000
 
 require (
 	github.com/golang/protobuf v1.5.3 // indirect

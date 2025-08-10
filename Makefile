@@ -8,7 +8,7 @@ build:
 test:
 	go test -v ./...
 
-# Run integration tests (requires running Nova Cache server)
+# Run integration tests (requires SubZero Server)
 test-integration:
 	go test -v -run TestIntegrationLocalServer ./...
 
@@ -65,7 +65,7 @@ check: fmt vet lint test
 example:
 	cd examples && go build -o example main.go
 
-# Run example (requires running Nova Cache server)
+# Run example (requires running Subzero Server)
 run-example:
 	cd examples && go run main.go
 

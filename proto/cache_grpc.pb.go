@@ -8,6 +8,7 @@ package proto
 
 import (
 	context "context"
+
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -19,13 +20,13 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	CacheService_Get_FullMethodName      = "/nova_cache.CacheService/Get"
-	CacheService_Set_FullMethodName      = "/nova_cache.CacheService/Set"
-	CacheService_Delete_FullMethodName   = "/nova_cache.CacheService/Delete"
-	CacheService_BatchGet_FullMethodName = "/nova_cache.CacheService/BatchGet"
-	CacheService_BatchSet_FullMethodName = "/nova_cache.CacheService/BatchSet"
-	CacheService_Health_FullMethodName   = "/nova_cache.CacheService/Health"
-	CacheService_Metrics_FullMethodName  = "/nova_cache.CacheService/Metrics"
+	CacheService_Get_FullMethodName      = "/subzero_cache.CacheService/Get"
+	CacheService_Set_FullMethodName      = "/subzero_cache.CacheService/Set"
+	CacheService_Delete_FullMethodName   = "/subzero_cache.CacheService/Delete"
+	CacheService_BatchGet_FullMethodName = "/subzero_cache.CacheService/BatchGet"
+	CacheService_BatchSet_FullMethodName = "/subzero_cache.CacheService/BatchSet"
+	CacheService_Health_FullMethodName   = "/subzero_cache.CacheService/Health"
+	CacheService_Metrics_FullMethodName  = "/subzero_cache.CacheService/Metrics"
 )
 
 // CacheServiceClient is the client API for CacheService service.
@@ -294,7 +295,7 @@ func _CacheService_Metrics_Handler(srv interface{}, ctx context.Context, dec fun
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var CacheService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "nova_cache.CacheService",
+	ServiceName: "subzero_cache.CacheService",
 	HandlerType: (*CacheServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

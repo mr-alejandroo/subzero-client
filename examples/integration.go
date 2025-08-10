@@ -6,7 +6,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/nova-cache/subzero-client"
+	subzero "github.com/mr.alejandroo/subzero-client/internal"
 )
 
 // Example
@@ -228,7 +228,6 @@ func runIntegrationDemo() {
 	// Health check
 	if err := cacheService.HealthCheck(); err != nil {
 		log.Printf("Health check failed: %v", err)
-		// In production, you might want to continue with degraded functionality
 	}
 
 	// Demo user operations
@@ -247,7 +246,7 @@ func demoErrorHandling(cs *CacheService) {
 	log.Println("=== Error Handling Demo ===")
 
 	// Test with invalid key
-	_, err := cs.GetUser(-1) // Invalid user ID that might cause errors
+	_, err := cs.GetUser(-1)
 	if err != nil {
 		if subzero.IsCacheError(err) {
 			cacheErr := subzero.GetCacheError(err)
@@ -356,7 +355,7 @@ func demoBatchOperations(cs *CacheService) {
 	log.Printf("✅ Bulk stored %d users in %v", len(users), duration)
 
 	// Bulk retrieve users
-	userIDs := []int{2001, 2002, 2003, 9999} // Include non-existent ID
+	userIDs := []int{2001, 2002, 2003, 9999} // (we also test with fake, to see if inconsistent)
 	start = time.Now()
 	retrievedUsers, err := cs.BulkGetUsers(userIDs)
 	if err != nil {

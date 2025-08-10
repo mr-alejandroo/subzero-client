@@ -1,9 +1,9 @@
 # SubZero - GO Client
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/nova-cache/subzero-client.svg)](https://pkg.go.dev/github.com/nova-cache/subzero-client)
-[![Go Report Card](https://goreportcard.com/badge/github.com/nova-cache/subzero-client)](https://goreportcard.com/report/github.com/nova-cache/subzero-client)
+[![Go Reference](https://pkg.go.dev/badge/github.com/mr.alejandroo/subzero-client.svg)](https://pkg.go.dev/github.com/mr.alejandroo/subzero-client)
+[![Go Report Card](https://goreportcard.com/badge/github.com/mr.alejandroo/subzero-client)](https://goreportcard.com/report/github.com/mr.alejandroo/subzero-client)
 
-SubZero is a professional, high-performance Go client for Nova Cache, a distributed cache system built in Rust. It provides both gRPC and TCP protocols with comprehensive error handling, retry logic, and connection pooling.
+SubZero is a high-performance Go client for Subzero Server, a distributed disk-first cache system. It provides both gRPC and TCP protocols with comprehensive error handling, retry logic, and connection pooling.
 
 ## Features
 
@@ -18,7 +18,7 @@ SubZero is a professional, high-performance Go client for Nova Cache, a distribu
 ## Installation
 
 ```bash
-go get github.com/nova-cache/subzero-client
+go get github.com/mr.alejandroo/subzero-client
 ```
 
 ## Quick Start
@@ -31,7 +31,7 @@ package main
 import (
     "log"
     
-    "github.com/nova-cache/subzero-client"
+    "github.com/mr.alejandroo/subzero-client"
 )
 
 func main() {
@@ -169,27 +169,9 @@ if err != nil {
 | `RetryDelay` | `time.Duration` | `100ms` | Retry delay |
 | `KeepAlive` | `bool` | `true` | Enable TCP keep-alive |
 
-## Performance Characteristics
+## Performance Comparisons
 
-### COMING SOON...
-
-## Best Practices
-
-
-
-## Testing
-
-Run the test suite:
-
-```bash
-go test ./...
-```
-
-Run benchmarks:
-
-```bash
-go test -bench=. ./...
-```
+COMING SOON...
 
 ## License
 

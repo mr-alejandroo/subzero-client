@@ -1,4 +1,4 @@
-package subzero
+package internal
 
 import (
 	"bufio"
@@ -10,7 +10,6 @@ import (
 	"time"
 )
 
-// TCPClientConfig holds configuration for TCP text protocol client
 type TCPClientConfig struct {
 	Address        string        `json:"address"`
 	ConnectTimeout time.Duration `json:"connect_timeout"`
@@ -21,7 +20,6 @@ type TCPClientConfig struct {
 	KeepAlive      bool          `json:"keep_alive"`
 }
 
-// DefaultTCPConfig returns default configuration for TCP client
 func DefaultTCPConfig() *TCPClientConfig {
 	return &TCPClientConfig{
 		Address:        "127.0.0.1:8081",
@@ -34,7 +32,7 @@ func DefaultTCPConfig() *TCPClientConfig {
 	}
 }
 
-// TCPClient implements Nova Cache TCP text protocol client
+// TCP Protocol Client
 type TCPClient struct {
 	config *TCPClientConfig
 	conn   net.Conn
@@ -44,7 +42,7 @@ type TCPClient struct {
 	closed int32
 }
 
-// NewTCPClient creates a new TCP client with the given configuration
+// Create new TCP client with given config
 func NewTCPClient(config *TCPClientConfig) (*TCPClient, error) {
 	if config == nil {
 		config = DefaultTCPConfig()
