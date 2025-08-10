@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+package nova_cache;
+option go_package = "./proto";
+
+service CacheService {
+    rpc Get(GetRequest) returns (GetResponse);
+    rpc Set(SetRequest) returns (SetResponse);
+    rpc Delete(DeleteRequest) returns (DeleteResponse);
+    rpc BatchGet(BatchGetRequest) returns (BatchGetResponse);
+    rpc BatchSet(BatchSetRequest) returns (BatchSetResponse);
+    rpc Health(HealthRequest) returns (HealthResponse);
+    rpc Metrics(MetricsRequest) returns (MetricsResponse);
+}
+
+message GetRequest {
+    string key = 1;
+    optional bool include_metadata = 2;
+}
+
+message GetResponse {
+    bool found = 1;
+    optional bytes value = 2;
+    optional EntryMetadata metadata = 3;
+}
+
+message SetRequest {
+    string key = 1;
+    bytes value = 2;
+    optional uint64 ttl_seconds = 3;
+    optional uint64 timestamp = 4;
+}
+
+message SetResponse {
+    bool success = 1;
+    optional string error = 2;
+}
+
+message DeleteRequest {
+    string key = 1;
+    optional uint64 timestamp = 2;
+}
+
+message DeleteResponse {
+    bool success = 1;
+    bool found = 2;
+}
+
+message BatchGetRequest {
+    repeated string keys = 1;
+}
+
+message BatchGetResponse {
+    map<string, GetResponse> results = 1;
+}
+
+message BatchSetRequest {
+    repeated SetRequest requests = 1;
+}
+
+message BatchSetResponse {
+    repeated SetResponse responses = 1;
+}
+
+message HealthRequest {}
+
+message HealthResponse {
+    string status = 1;
+    uint64 uptime_seconds = 2;
+    uint32 active_connections = 3;
+}
+
+message MetricsRequest {}
+
+message MetricsResponse {
+    string prometheus_metrics = 1;
+}
+
+message EntryMetadata {
+    uint64 created_at = 1;
+    uint64 updated_at = 2;
+    optional uint64 expires_at = 3;
+    uint32 size_bytes = 4;
+    string checksum = 5;
+}
