@@ -1,7 +1,7 @@
 # SubZero - GO Client
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/mr.alejandroo/subzero-client.svg)](https://pkg.go.dev/github.com/mr.alejandroo/subzero-client)
-[![Go Report Card](https://goreportcard.com/badge/github.com/mr.alejandroo/subzero-client)](https://goreportcard.com/report/github.com/mr.alejandroo/subzero-client)
+[![Go Reference](https://pkg.go.dev/badge/github.com/mr-alejandroo/subzero-client.svg)](https://pkg.go.dev/github.com/mr-alejandroo/subzero-client)
+[![Go Report Card](https://goreportcard.com/badge/github.com/mr-alejandroo/subzero-client)](https://goreportcard.com/report/github.com/mr-alejandroo/subzero-client)
 
 SubZero is a high-performance Go client for Subzero Server, a distributed disk-first cache system. It provides both gRPC and TCP protocols with comprehensive error handling, retry logic, and connection pooling.
 
@@ -18,7 +18,7 @@ SubZero is a high-performance Go client for Subzero Server, a distributed disk-f
 ## Installation
 
 ```bash
-go get github.com/mr.alejandroo/subzero-client
+go get github.com/mr-alejandroo/subzero-client
 ```
 
 ## Quick Start
@@ -31,7 +31,7 @@ package main
 import (
     "log"
     
-    "github.com/mr.alejandroo/subzero-client"
+    "github.com/mr-alejandroo/subzero-client"
 )
 
 func main() {

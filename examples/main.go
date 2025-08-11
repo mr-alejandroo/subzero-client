@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	subzero "github.com/mr.alejandroo/subzero-client/internal"
+	subzero "github.com/mr-alejandroo/subzero-client/internal"
 )
 
 func main() {

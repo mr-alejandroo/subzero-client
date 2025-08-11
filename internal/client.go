@@ -13,7 +13,7 @@ import (
 	"google.golang.org/grpc/keepalive"
 	"google.golang.org/grpc/status"
 
-	pb "github.com/mr.alejandroo/subzero-client/proto"
+	pb "github.com/mr-alejandroo/subzero-client/proto"
 )
 
 type ClientConfig struct {

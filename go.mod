@@ -1,4 +1,4 @@
-module github.com/mr.alejandroo/subzero-client
+module github.com/mr-alejandroo/subzero-client
 
 go 1.24.4
 
