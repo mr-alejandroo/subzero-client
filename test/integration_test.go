@@ -1,11 +1,11 @@
-package subzero
+package main
 
 import (
 	"fmt"
 	"testing"
 	"time"
 
-	subzero "github.com/mr.alejandroo/subzero-client/internal"
+	subzero "github.com/mr-alejandroo/subzero-client"
 )
 
 func TestIntegrationLocalServer(t *testing.T) {
